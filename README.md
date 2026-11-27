@@ -59,4 +59,8 @@ npm run test:e2e
 npm audit
 ```
 
-The optional speech E2E case uses `TOUR_TEST_WAV` pointing to a mono 16 kHz WAV of “remember the kitchen” and the Vosk configuration above. The Playwright suite uses a production preview server. The phone speech and external planner test use controlled inputs. See [QA.md](QA.md) for the test evidence and open items and [SUBMISSION.md](SUBMISSION.md) for the entry copy. Public dependencies include Even Hub SDK and simulator, Vite, Playwright and optional Vosk or provider services. The existing V13 application was used as the base and extended in place.
+The optional speech E2E case uses `TOUR_TEST_WAV` pointing to a mono 16 kHz WAV of “remember the kitchen” and the Vosk configuration above. The Playwright suite uses a production preview server. The phone speech and external planner test use controlled inputs. See [QA.md](QA.md) for the test evidence and open items and [SUBMISSION.md](SUBMISSION.md) for the entry copy. Public dependencies include Even Hub SDK and simulator, Vite, Playwright and optional Vosk or provider services. 
+## Hackathon development and prior work disclosure
+
+Tour Memory application development began November 26, 2026, within the official November 23–29, 2026 hackathon window, as confirmed by the founder. Versions V1–V13 and subsequent enhancements are iterations of that hackathon project. Development used AI-assisted tools and third-party SDKs, libraries, APIs and public data; these dependencies are not claimed as original work.
+
