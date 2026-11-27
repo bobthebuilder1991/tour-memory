@@ -1,0 +1,14 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {answer,initial,find,interpretLocal} from './tour.js';
+const s=initial();
+test('compares within purchase tour',()=>assert.match(answer(s,find('b1'),{action:'compare'}),/18,000 less/));
+test('rental comparison includes required fees and optional parking',()=>{const r=answer(s,find('r1'),{action:'compare'});for(const t of ['$25 less','$1,825','$1,750'])assert.ok(r.includes(t))});
+test('unknown parking never assumed free',()=>assert.match(answer(s,find('r3'),{action:'compare'}),/unconfirmed/));
+test('block and budget constrain rental results',()=>{const c=interpretLocal('Which rentals on this block under $1,500?');assert.equal(answer(s,find('r1'),c),'The Studio $1,410/mo')});
+test('budget abbreviated in thousands',()=>assert.match(answer(s,find('b1'),interpretLocal('under $400k')),/Brick Row/));
+test('own notes stay with home',()=>assert.equal(answer(s,find('b2'),{action:'notes'}),'Liked the garage.'));
+import {parsePrefs,rank,sourced,nearby} from './discovery.js';
+test('published homes filter by budget and bedroom minimum',()=>{const picks=rank(sourced.filter(h=>h.mode==='buy'),parsePrefs('under $400k, three bedrooms near a school and bus'));assert.equal(picks.length,2);assert.ok(picks.every(x=>x.h.price<=400000&&x.h.beds>=3&&x.places.bus.name))});
+test('incomplete rental fee evidence flagged and pricing floor enforced',()=>{const h=sourced.find(h=>h.mode==='rent');assert.deepEqual(rank([h],parsePrefs('under $1800 with parking'))[0].gaps,['required fees']);assert.equal(rank([h],parsePrefs('under $1500')).length,0)});
+test('selected route checked against schedule labels',()=>{assert.equal(parsePrefs('near bus line 22').line,'22');assert.equal(nearby(sourced[0],'99999').bus,undefined)});

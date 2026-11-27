@@ -1,0 +1,5 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {validPosition,nearestListings} from './location.js';import {audioProvider,transcribe} from './speech.js';
+test('validates GPS bounds',()=>{assert.equal(validPosition({latitude:91,longitude:0}),false);assert.equal(validPosition({latitude:0,longitude:0}),true)});
+test('nearby excludes fictional and distant listings',()=>{const rows=[{id:'a',source:'snapshot',coords:[0,.001]},{id:'b',coords:[0,0]},{id:'c',source:'live',coords:[0,1]}];assert.deepEqual(nearestListings(rows,{latitude:0,longitude:0}).map(x=>x.h.id),['a'])});
+test('Deepgram independent of OpenAI',async()=>{const env={DEEPGRAM_API_KEY:'test'};assert.equal(audioProvider(env),'deepgram');assert.equal(await transcribe(Buffer.from('audio'),async(url,opts)=>{assert.match(url,/deepgram/);assert.equal(opts.headers.Authorization,'Token test');return {results:{channels:[{alternatives:[{transcript:'hello'}]}]}}},env),'hello')});
+test('offline override',()=>assert.equal(audioProvider({AUDIO_PROVIDER:'offline',DEEPGRAM_API_KEY:'x'}),'offline'));

@@ -1,0 +1,3 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {readiness,checklists} from './readiness.js';
+const base={income:5000,housing:1500,debt:300,expenses:1200,savings:8000,upfront:3000};
+test('cash flow',()=>assert.equal(readiness(base).remaining,2000));test('cash after move',()=>assert.equal(readiness(base).cash,5000));test('screening estimate',()=>assert.equal(readiness(base).screeningIncome,4500));test('negative cash visible',()=>assert.equal(readiness({...base,savings:0}).cash,-3000));test('invalid income',()=>assert.throws(()=>readiness({...base,income:0})));test('invalid numbers',()=>assert.throws(()=>readiness({...base,debt:NaN})));test('lifecycle lists',()=>assert.equal(Object.keys(checklists).length,4));
