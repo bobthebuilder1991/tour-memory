@@ -5,7 +5,7 @@
 | Project | Tour Memory |
 | Track | AI Assistants & Work |
 | Tagline | Find it. Tour it. Remember it. Make it home. |
-| Repository | Pending GitHub account authorization and public publication |
+| Repository | https://github.com/bobthebuilder1991/tour-memory |
 | Demo | Tour Memory official simulator demonstration. Public video link pending. |
 | Team | Todd Sheridan. Confirm the entry's final team details in DoraHacks. |
 
@@ -21,7 +21,7 @@ The official Even Hub SDK drives the display, receives gestures and handles micr
 
 ## Existing work and dependencies
 
-This entry continues the existing Tour Memory V13 prototype. This revision adds locally hosted Vosk speech, preference dictation, offline budget follow-up and ordered intentions, tighter approval handling, source attribution, Playwright integration checks and simulator verification. The existing notebook, discovery, matching, outreach, housing journal, readiness and household features remain part of the entry. Third-party components include Even Hub SDK, the official simulator, Vite, Vosk, publicly sourced data and optional service APIs.
+Tour Memory application development began November 26, 2026, within the official November 23–29, 2026 hackathon window, as confirmed by the founder. Versions V1–V13 and subsequent enhancements are iterations of that hackathon project. Development used AI-assisted tools and third-party SDKs, libraries, APIs and public data; these dependencies are not claimed as original work. This revision adds locally hosted Vosk speech, preference dictation, offline budget follow-up and ordered intentions, tighter approval handling, source attribution, Playwright integration checks and simulator verification. The existing notebook, discovery, matching, outreach, housing journal, readiness and household features remain part of the entry. Third-party components include Even Hub SDK, the official simulator, Vite, Vosk, publicly sourced data and optional service APIs.
 
 ## Approval
 
